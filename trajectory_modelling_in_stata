@@ -1,0 +1,20 @@
+
+**Stata code for a growth mixture model using GLLAMM. 
+**Author Kathryn Dalrymple 
+
+
+**data should be in long format
+reshape long dietary_variable, i(participant_id) j(time)
+
+tab time, gen(v)
+eq v1: v1
+eq v2: v2
+eq v3: v3
+eq v4: v4 
+eq v5: v5 
+
+gllamm dietary_variable, i(participant_id) ip(f) nip(2)  eqs(v1 v2 v3 v4 v5) nrf(5) 
+
+*i(level 2 units) nrf(number of latent variables) eqs (for parameters and constants, no constants assumed ///
+/// unless included. ip(f/fn) centred vs non-centered latent classes nip(number of latent classes).
+
